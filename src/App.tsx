@@ -108,9 +108,9 @@ function App() {
           </div>
 
           {/* Results */}
-          {proxyUrls && shortenedUrls && (
+          {proxyUrls && (
             <div className="w-full max-w-2xl">
-              <ProxyResults urls={shortenedUrls} />
+              <ProxyResults urls={proxyUrls} />
             </div>
           )}
         </div>
