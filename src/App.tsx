@@ -60,37 +60,18 @@ function App() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          // Add CORS headers if needed
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({ longUrl: proxyUrl }),
       });
 
       if (!response.ok) {
-        let errorData;
-        const contentType = response.headers.get("Content-Type");
-
-        if (contentType && contentType.includes("application/json")) {
-          try {
-            errorData = await response.json();
-          } catch (jsonError) {
-            console.error("Error parsing JSON error:", jsonError);
-            errorData = await response.text(); // Fallback to text if JSON parsing fails
-          }
-        } else {
-          errorData = await response.text();
-        }
-
-        console.error("Worker error:", {
-          status: response.status,
-          statusText: response.statusText,
-          errorData,
-        });
-        throw new Error(
-          `Failed to shorten URL: ${response.status} ${response.statusText}`
-        );
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
+      // Change to text() instead of json()
       const shortUrl = await response.text();
-      console.log("Shortened URL:", shortUrl);
       return shortUrl;
     } catch (error) {
       console.error("Error shortening URL:", error);
