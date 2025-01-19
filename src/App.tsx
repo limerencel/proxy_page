@@ -29,7 +29,7 @@ function App() {
     }
 
     // Simple URL transformation
-    const cloudflareProxy = `https://gp.mita.news/${inputUrl}`;
+    const cloudflareProxy = `https://gp.hoshicc.cc/${inputUrl}`;
     const aliyunProxy = `https://github-proxy-izhcilrgss.cn-hongkong.fcapp.run/${inputUrl}`;
 
     setProxyUrls({
